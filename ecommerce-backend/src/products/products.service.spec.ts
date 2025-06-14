@@ -75,7 +75,7 @@ describe('ProductsService', () => {
       expect(result[0].origin).toBe('Brasil');
     });
 
-    it('deve filtrar produtos por preço mínimo', async () => {
+    it('deve filtrar produtos por preço minimo', async () => {
       const filters: FilterProductDto = { minPrice: 150 };
       const result = await service.findAll(filters);
 
@@ -91,7 +91,7 @@ describe('ProductsService', () => {
       expect(result[0].price).toBeLessThanOrEqual(150);
     });
 
-    it('deve combinar múltiplos filtros', async () => {
+    it('deve combinar varios filtros', async () => {
       const filters: FilterProductDto = {
         origin: ProductOrigin.Brasil,
         minPrice: 50,
