@@ -5,11 +5,17 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe()); //isso valida os DTOs no nest
+  
+  // Cors final
   app.enableCors({
-  origin: 'http://localhost:5173', 
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-});
-  await app.listen(3000);
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Accept', 'Authorization'],
+    credentials: true,
+  });
+
+  
+  const port = 3000;
+  await app.listen(port, '0.0.0.0');
 }
 bootstrap(); 
