@@ -1,0 +1,28 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// pedidos
+model Order {
+  id        String      @id @default(uuid())
+  createdAt DateTime    @default(now())
+  total     Float
+  items     OrderItem[]
+}
+
+// itens do pedido
+model OrderItem {
+  id          String  @id @default(uuid())
+  productId   String  
+  productName String
+  quantity    Int
+  price       Float   
+  Order       Order   @relation(fields: [orderId], references: [id])
+  orderId     String
+}
